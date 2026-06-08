@@ -1,5 +1,12 @@
 import dotenv from 'dotenv';
-dotenv.config();
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const envFile = process.env.NODE_ENV === 'production' || process.env.VERCEL
+  ? '.env.prod'
+  : '.env';
+dotenv.config({ path: join(__dirname, envFile) });
 
 import express from 'express';
 import cors from 'cors';
@@ -13,6 +20,8 @@ import taskRoutes from './routes/tasks.js';
 const app = express();
 const PORT = process.env.PORT || 5000;
 const FRONTEND_URL = process.env.FRONTEND_URL || 'http://localhost:3000';
+
+console.log("FRONTEND_URL",FRONTEND_URL);
 
 // Middleware
 app.use(cors({
