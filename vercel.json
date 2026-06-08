@@ -1,6 +1,16 @@
 {
   "version": 2,
   "installCommand": "npm install && npx prisma generate",
-  "outputDirectory": ".",
-  "framework": null
+  "builds": [
+    {
+      "src": "api/index.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "api/index.js"
+    }
+  ]
 }
