@@ -1,4 +1,5 @@
-
+import dotenv from 'dotenv';
+dotenv.config();
 
 import express from 'express';
 import cors from 'cors';
@@ -11,7 +12,7 @@ import taskRoutes from './routes/tasks.js';
 
 const app = express();
 const PORT = process.env.PORT || 5000;
-const FRONTEND_URL = process.env.FRONTEND_URL || 'https://task-management-ui-alpha.vercel.app';
+const FRONTEND_URL = process.env.FRONTEND_URL;
 
 
 // Middleware
